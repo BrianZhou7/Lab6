@@ -30,6 +30,14 @@ public class IntegerList {
 	 */
 	public IntegerList(int capacity) {
 		// TODO: Implement this method.
+		if (capacity < MIN_CAPACITY) {
+	        throw new IllegalArgumentException(
+	            "The capacity cannot be less than " + MIN_CAPACITY + "."
+	        );
+	    }
+
+	    array = new int[capacity];
+	    size = 0;
 	}
 	
 	/**
@@ -50,6 +58,13 @@ public class IntegerList {
 	 */
 	public int indexOf(int integer) {
 		// TODO: Implement this method.
+		for (int i = 0; i < size; i++) {
+	        if (array[i] == integer) {
+	            return i;
+	        }
+	    }
+
+	    return -1;
 	}
 	
 	/**
@@ -62,6 +77,13 @@ public class IntegerList {
 	 */
 	public int get(int index) {
 		// TODO: Implement this method.
+		if (index < 0 || index >= size) {
+	        String message = "The index is outside the range [0, "
+	                + (size - 1) + "].";
+	        throw new IndexOutOfBoundsException(message);
+	    }
+
+	    return array[index];
 	}
 	
 	/**
@@ -151,5 +173,10 @@ public class IntegerList {
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(", ", "[", "]");
 		// TODO: Complete this method.
+		for (int i = 0; i < size; i++) {
+	        joiner.add(Integer.toString(array[i]));
+	    }
+
+	    return joiner.toString();
 	}
 }
